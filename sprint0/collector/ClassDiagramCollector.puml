@@ -1,0 +1,14 @@
+@startuml ClassDiagramCollector
+
+interface Collector {
+    listUrl : list
+    time : int
+    getRespond() : dict
+    getRequest() : HTTP
+    getTime() : int
+}
+class requestCollector{}
+
+Collector --> requestCollector
+Collector --> curlCollector
+@enduml
