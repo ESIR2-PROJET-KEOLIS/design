@@ -1,0 +1,29 @@
+@startuml
+class Bus {
+  ligne : String
+  positionGeo : Position
+  void setLigne(String Ligne)
+  String getLigne()
+  void setPosition(Position p)
+  Position getPosition()
+}
+
+class Position {
+   longitude : Double
+   latitude : Double
+   void setLongitude(String Ligne)
+   String getLongitude()
+   void setLatitude(Position p)
+   Position getLatitude()
+}
+
+class Communication {
+   bus : Bus
+   void addbus(Bus newbus)
+   List<Bus> getBus(Bus buswant)
+   void readData(File f)
+}
+
+Bus "1" -- "1" Position : possède
+Bus "*" -- "1" Communication : communique
+@enduml
