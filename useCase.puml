@@ -1,0 +1,18 @@
+@startuml
+
+left to right direction
+actor "Keolis Employee" as keo
+actor "User" as user
+rectangle System {
+  usecase "Visualize Keolis network in real-time" as VTR
+  usecase "Visualize Keolis network simulated at anytime" as VT
+  usecase "Simulate the network by modifying parameters" as S
+}
+
+
+user <.. keo : extends
+user --> VTR
+user --> VT
+keo --> S
+
+@enduml
