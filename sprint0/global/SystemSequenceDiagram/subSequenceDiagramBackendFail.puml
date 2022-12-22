@@ -1,0 +1,11 @@
+@startuml sub sequence diagram Backend fail
+autonumber
+actor       User       as U
+participant "Front-end" as FE
+participant "Back-end" as BE
+
+U -> FE : request something
+FE -> BE : request something
+BE --> FE : return error message
+FE --> U : display error message
+@enduml

@@ -1,0 +1,14 @@
+@startuml sub sequence diagram get cache fail
+autonumber
+actor       User       as U
+participant "Front-end" as FE
+participant "Back-end" as BE
+database    cache    as Ca
+
+U -> FE : request something
+FE -> BE : request something
+BE -> Ca : request something
+Ca --> BE : return error message fail to conect to cache
+BE --> FE : return error message
+FE --> U : display error message
+@enduml

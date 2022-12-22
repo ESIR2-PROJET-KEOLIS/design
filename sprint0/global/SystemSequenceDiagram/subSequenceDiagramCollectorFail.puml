@@ -1,0 +1,15 @@
+@startuml sub sequence diagram collector fail
+autonumber
+participant "Processing and storage unit" as UTS
+queue       "queue All buses Position Raw" as QABPR
+participant Collector as Co
+database    "Star database API"    as DBStar
+
+loop every 30 seconds
+    Co -> DBStar : send request
+    DBStar --> Co : return fail
+    Co -> QABPR : error message
+    QABPR -> UTS : error message
+    UTS -> UTS : log error message
+end
+@enduml

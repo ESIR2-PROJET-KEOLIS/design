@@ -1,0 +1,11 @@
+@startuml sub sequence diagram Front end notification
+autonumber
+actor       User       as U
+participant "Front-end" as FE
+participant "Back-end" as BE
+
+BE -> BE : receive data
+BE -> FE : send data
+FE -> U : display data
+
+@enduml
