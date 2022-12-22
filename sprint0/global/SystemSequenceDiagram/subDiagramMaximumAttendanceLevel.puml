@@ -1,0 +1,17 @@
+@startuml sub  diagram for Maximum attendance level
+autonumber
+database    database    as DB
+participant "Processing and storage unit" as UTS
+queue       "queue Maximum attendance level" as QMAL
+participant Collector as Co
+database    databaseStar    as DBStar
+
+loop every days
+    Co -> DBStar : send request to get all Maximum attendance level
+    DBStar --> Co : return all Maximum attendance level Raw
+    Co -> QMAL : Maximum attendance level Raw
+    QMAL -> UTS : Maximum attendance level Raw
+    UTS -> DB : Maximum attendance level Parse
+end
+
+@enduml

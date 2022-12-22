@@ -1,0 +1,16 @@
+@startuml sub sequence diagram for buses schedules
+autonumber
+database    database    as DB
+participant "Processing and storage unit" as UTS
+queue       "queue All buses schedule" as QABS
+participant Collector as Co
+database    databaseStar    as DBStar
+
+loop every days
+    Co -> DBStar : send request to get all buses schedules
+    DBStar --> Co : return all buses schedules Raw
+    Co -> QABS : buses schedules Raw
+    QABS -> UTS : buses schedules Raw
+    UTS -> DB : buses schedules Parse
+end
+@enduml

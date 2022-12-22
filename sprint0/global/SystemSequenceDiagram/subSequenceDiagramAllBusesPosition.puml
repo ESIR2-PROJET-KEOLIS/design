@@ -1,0 +1,20 @@
+@startuml sub sequence diagram for all buses position
+autonumber
+participant "Back-end" as BE
+database    cache    as Ca
+queue       "queue All buses Position Parse"  as QABPP
+participant "Processing and storage unit" as UTS
+queue       "queue All buses Position Raw" as QABPR
+participant Collector as Co
+database    "Star database API"    as DBStar
+
+loop every 30 seconds
+    Co -> DBStar : send request to get all buses position
+    DBStar --> Co : return all buses position raw
+    Co -> QABPR : buses Positions raw
+    QABPR -> UTS : buses Positions raw
+    UTS -> QABPP : buses Positions parse
+    QABPP -> BE : buses Positions parse
+    BE -> Ca : buses Positions parse
+end
+@enduml

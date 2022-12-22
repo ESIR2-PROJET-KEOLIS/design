@@ -1,0 +1,15 @@
+@startuml sub sequence diagram visualization of all buses 
+autonumber
+actor       User       as U
+participant "Front-end" as FE
+participant "Back-end" as BE
+database    cache    as Ca
+
+U -> FE : request all buses position
+FE -> BE : request all buses position
+BE -> Ca : request all buses position
+Ca --> BE : return all buses position
+BE --> FE : return all buses position
+FE --> U : display all buses position
+
+@enduml

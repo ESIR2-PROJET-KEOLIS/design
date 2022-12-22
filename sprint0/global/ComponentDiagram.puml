@@ -7,6 +7,7 @@ component  "Star API Database" {
 
 component "Systeme"{
     portin HTTP_RequestIn
+    Portout HTTP_PortOut
     database SQLite
     database Cache
     HTTP_RequestIn -> [collector]
@@ -19,10 +20,17 @@ component "Systeme"{
     [ProcessingAndStorageUnit] <--> [BackEnd]
     [BackEnd] <-> Cache
     [BackEnd] --> [FrontEnd]
+    
+    [FrontEnd] ---> HTTP_PortOut
+    
+
 }
 
+component "Web_page"{
+    portin HTTP_PortIn
+}
 
 HTTPRequestOut <--- HTTP_RequestIn
-
+HTTP_PortOut <--- HTTP_PortIn
 
 @enduml
