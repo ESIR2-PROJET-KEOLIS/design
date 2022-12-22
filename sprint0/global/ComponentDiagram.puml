@@ -1,0 +1,28 @@
+@startuml ComponentDiagram
+
+component  "Star API Database" {
+    portout HTTPRequestOut
+}
+
+
+component "Systeme"{
+    portin HTTP_RequestIn
+    database SQLite
+    database Cache
+    HTTP_RequestIn -> [collector]
+    [collector] -> [RabbitMQ]
+    [RabbitMQ] -> [ProcessingAndStorageUnit]
+
+    [ProcessingAndStorageUnit] <-> SQLite
+
+    [RabbitMQ] --> [BackEnd]
+    [ProcessingAndStorageUnit] <--> [BackEnd]
+    [BackEnd] <-> Cache
+    [BackEnd] --> [FrontEnd]
+}
+
+
+HTTPRequestOut <--- HTTP_RequestIn
+
+
+@enduml
