@@ -1,0 +1,25 @@
+@startuml
+
+actor Client
+boundary BusController
+control BusService
+entity TabBus
+control RabbitMQService
+actor RabbitMq
+control WebSocketServer
+Client -> BusController: getBus()
+BusController -> BusService: getBus()
+BusService -> TabBus: getBus()
+TabBus --> BusService: getBus()
+BusService --> BusController: getBus()
+BusController --> Client: getBus()
+Client -> WebSocketServer: connect()
+WebSocketServer --> Client: recupData()
+BusService -> RabbitMQService: listenToRabbitMQ()
+RabbitMq -> RabbitMQService: NewMessageOnListeningQueue
+RabbitMQService -> WebSocketServer: send(msg: string)
+WebSocketServer --> Client: recupData()
+WebSocketServer --> BusService: stockData()
+
+
+@enduml

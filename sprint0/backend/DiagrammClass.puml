@@ -27,5 +27,3 @@ class Communication {
 Bus "1" -- "1" Position : possède
 Bus "*" -- "1" Communication : communique
 @enduml
-//access personnal token proje
-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
