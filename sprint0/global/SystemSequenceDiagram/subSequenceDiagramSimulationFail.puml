@@ -3,13 +3,10 @@ autonumber
 actor       User       as U
 participant "Front-end" as FE
 participant "Back-end" as BE
-database    cache    as Ca
 participant "Processing and storage unit" as UTS
 
 U -> FE : request simulation
 FE -> BE : request simulation
-BE -> Ca : request data for simulation
-Ca --> BE : return data for simulation
 BE -> UTS : create a simulation
 UTS --> BE : return error message
 BE --> FE : return error message
