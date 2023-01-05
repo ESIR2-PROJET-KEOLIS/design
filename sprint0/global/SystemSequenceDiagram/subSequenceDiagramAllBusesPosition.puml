@@ -1,5 +1,6 @@
 @startuml sub sequence diagram for all buses position
 autonumber
+participant "Front-end" as FE
 participant "Back-end" as BE
 database    cache    as Ca
 queue       "queue All buses Position Parse"  as QABPP
@@ -16,5 +17,6 @@ loop every 30 seconds
     UTS -> QABPP : buses Positions parse
     QABPP -> BE : buses Positions parse
     BE -> Ca : buses Positions parse
+    BE -> FE : notify changes
 end
 @enduml
