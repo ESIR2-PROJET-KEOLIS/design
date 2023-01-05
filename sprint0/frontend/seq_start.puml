@@ -1,0 +1,10 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+Frontend -> MapBoxService: Get Map visualization data
+MapBoxService --> Frontend: Return map info and visualization
+Frontend -> Backend : Connection Websocket
+Backend --> Frontend: Current bus position in real time
+@enduml
