@@ -1,0 +1,52 @@
+@startuml
+class BusController {
+  
+  Bus[] getAll()
+  Bus getById(int id)
+  Bus create(string ligne, double longitude,double latitude)
+}
+
+class BusService {
+  ligne : String
+  positionGeo : Position
+  void setLigne(String Ligne)
+  String getLigne()
+  void setPosition(Position p)
+  Position getPosition()
+}
+
+class PositionController {
+   longitude : Double
+   latitude : Double
+
+}
+
+class PositionService {
+   longitude : Double
+   latitude : Double
+   void setLongitude(String Ligne)
+   String getLongitude()
+   void setLatitude(Position p)
+   Position getLatitude()
+}
+
+class CommunicationController {
+  void getMessage()
+  void processMessage()
+}
+
+class CommunicationService {
+   bus : Bus
+   void addbus(Bus newbus)
+   List<Bus> getBus(Bus buswant)
+   void readData(File f)
+}
+
+BusController "1" -- "1" BusService : communique
+PositionController "1" -- "1" PositionService : communique
+CommunicationController "1" -- "1" CommunicationService : communique
+
+
+BusService "1" -- "1" PositionService : possède
+BusService "*" -- "1" CommunicationService : communique
+@enduml
