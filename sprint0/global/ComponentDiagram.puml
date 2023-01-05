@@ -11,15 +11,15 @@ component "Systeme"{
     database SQLite
     database Cache
     HTTP_RequestIn -> [collector]
-    [collector] -> [RabbitMQ]
-    [RabbitMQ] -> [ProcessingAndStorageUnit]
+    [collector] -> [RabbitMQ] :  send data to queue
+    [RabbitMQ] -> [ProcessingAndStorageUnit] : send raw dada via queue
 
-    [ProcessingAndStorageUnit] <-> SQLite
+    [ProcessingAndStorageUnit] <-(0-> SQLite : store data and get data
 
-    [RabbitMQ] --> [BackEnd]
-    [ProcessingAndStorageUnit] <--> [BackEnd]
-    [BackEnd] <-> Cache
-    [BackEnd] --> [FrontEnd]
+    [RabbitMQ] --> [BackEnd] : send row data via queue
+    [ProcessingAndStorageUnit] <-(0-> [BackEnd] : send parsed data
+    [BackEnd] <-(0-> Cache : receive data
+    [BackEnd] <-0)-> [FrontEnd] : echange data parsed
     
     [FrontEnd] ---> HTTP_PortOut
     
@@ -30,7 +30,7 @@ component "Web_page"{
     portin HTTP_PortIn
 }
 
-HTTPRequestOut <--- HTTP_RequestIn
-HTTP_PortOut <--- HTTP_PortIn
+HTTPRequestOut --0)-> HTTP_RequestIn : send data
+HTTP_PortOut ---> HTTP_PortIn : send web page to user
 
 @enduml
