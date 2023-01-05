@@ -1,18 +1,30 @@
 @startuml SequenceCollector
-participant APP
-activate APP
+participant Main
+activate Main
 create "Collector : Interface" as Col 
-APP -> Col : Request(listUrl, time)
+Main -> Col : Request(listUrl, time)
 database "API Keolis" as API
 activate Col
 loop 
-APP -> Col : GetRespond()
+Main-> Col : GetRespond()
 Col -> API : SendRequest()
 API --> Col : HTTP
-Col --> APP : JSON
-APP -> Col : GetTime()
-APP <-- Col : int time
-APP -> APP : Sleep()
+Col --> Main: JSON
+Main-> Col : GetTime()
+Main<-- Col : int time
+Main-> Main: Sleep()
 end
+
+@enduml
+
+@startuml SequenceLanchuer
+participant Launcher
+activate Launcher
+create "CollectorStar : Collector" as Col
+Launcher -> Col : createInstance()
+activate Col
+Col -> Col : Sub SequenceCollector
+
+Launcher -> Launcher : wait()
 
 @enduml
