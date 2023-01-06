@@ -1,14 +1,28 @@
 @startuml ClassDiagramCollector
 
-interface Collector {
-    listUrl : list
-    time : int
-    getRespond() : dict
-    getRequest() : HTTP
-    getTime() : int
+interface CollectorInterface {
+    get_response() : dict
+    send_request() : dict
 }
-class requestCollector{}
+class RequestCollector{
+sendRequest()
+get_response()
+}
 
-Collector --> requestCollector
-Collector --> curlCollector
+class CurlCollector{
+sendRequest()
+get_response()
+}
+
+class AppCollector{
+    setup_logger()
+    main(name, collector, time)
+    verifArg(tab_argv)
+    collector_choice(collector_type) : CollectorInterface
+    help()
+}
+
+CollectorInterface --> RequestCollector
+CollectorInterface --> CurlCollector
+AppCollector -- CollectorInterface
 @enduml
