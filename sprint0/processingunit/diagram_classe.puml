@@ -1,0 +1,92 @@
+@startuml
+skinparam titleFontColor #0000FF
+title Class \n__Processing storage unit__
+ 
+/' Multiple lines comment starts here:
+    avoid class name with space
+'/
+class "DatabaseBinding"{
+    +void connect()
+    +void close()
+}
+
+class "DataFormating"{
+    {static}HashMap<String, Integer>: BusNumber 
+    +String: FormatedStringHeader
+    +String: FormatedStringContent
+    +String: FormatedStringFooter
+
+    {static} +String readFileAsString(String file)
+    {static} +main(String[] args)
+    +String formatReceivedJSON(String src)
+    +void printHashMap()
+}
+ 
+class "RmqListener"{
+    {static} -String: QUEUE_NAME
+    -String: host 
+    -String: username 
+    -String: password
+    ~Channel: publisherChannel
+
+    +void run()
+}
+
+
+class "RmqPublisher"{
+    {static} -String: QUEUE_NAME
+    -String: host 
+    -String: username 
+    -String: password
+
+    +Channel setUpPublisherConnectionAndChannel()
+    +void PublishQueue(String msg, Channel ch)
+    +String getTargetQueue()
+
+}
+
+
+class "Greeting"{
+    -long: id 
+    -String: content 
+    +long getId()
+    +String getContent()
+}
+
+class "GreetingController"{
+    {static} -String: template
+    {static} -AtomicLong: counter
+    +Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name)
+    +Greeting greeting2(@RequestParam(value = "name") String name)
+
+}
+
+class "RestServiceApplication"{
+    {static} +void main(String[] args)
+}
+
+class "Simulation"{
+    {static} +void main(String[] args)
+}
+class "Bus"{
+    
+}
+class "Ligne"{
+
+}
+
+
+Simulation o-- DatabaseBinding
+Simulation o-- Ligne
+Ligne o-- Bus
+
+RmqListener o-- Simulation 
+RmqListener o-- DataFormating  
+RmqListener o-- RmqPublisher  
+RestServiceApplication o-- RmqListener 
+
+left footer
+<font color=red>Warning:</font>
+This is a footer.
+endfooter
+@enduml

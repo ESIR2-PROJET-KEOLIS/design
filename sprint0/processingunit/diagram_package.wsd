@@ -1,0 +1,37 @@
+@startuml diagram_package
+skinparam titleFontColor #0000FF
+title Package diagram \n__Processing storage unit__
+
+package database {
+    class DatabaseBinding
+}
+
+package formating {
+    class DataFormating
+}
+
+package rabbitmq {
+    package client{
+        class RmqListener
+        class RmqPublisher
+    }
+    
+}
+
+package restservice {
+    class Greeting
+    class GreetingController
+    class RestServiceApplication
+}
+
+package simulation {
+    class Simulation 
+    class Bus 
+    Class Ligne
+}
+
+database -- formating 
+client --> simulation
+simulation -- database
+restservice --> client
+client --> formating
