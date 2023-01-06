@@ -10,8 +10,6 @@ Main-> Col : GetRespond()
 Col -> API : SendRequest()
 API --> Col : HTTP
 Col --> Main: JSON
-Main-> Col : GetTime()
-Main<-- Col : int time
 Main-> Main: Sleep()
 end
 
