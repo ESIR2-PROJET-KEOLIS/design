@@ -1,0 +1,29 @@
+@startuml diagram_package
+skinparam titleFontColor #0000FF
+title Package diagram \nCollector
+
+package appCollector {
+    class collectorApp
+    interface collectorInterface
+    class RequestCollector
+    class CurlCollector
+}
+
+Package Launcher {
+    class appLauncher
+}
+
+package rabbitmq {
+    package client{
+        class RmqListener
+        class RmqPublisher
+    }
+
+}
+
+appCollector <- Launcher
+rabbitmq <-- appCollector 
+
+
+
+@enduml
