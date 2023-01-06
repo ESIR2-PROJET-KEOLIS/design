@@ -36,41 +36,35 @@ PositionController "1" -- "1" PositionService : communique
 
 
 class CommunicationController {
-  void getMessage()
-  void processMessage()
+
 }
 
 class CommunicationService {
-   bus : Bus
-   void addbus(Bus newbus)
-   List<Bus> getBus(Bus buswant)
-   void readData(File f)
+   async void listenToRabbitMQ()
 }
 
 CommunicationController "1" -- "1" CommunicationService : communique
 
 
 class SimulationController{
-
+SimulationData getSimulation(params)
 }
 
 class SimulationService{
-
+Promise<SimulationData> getSimulation(params)
 }
 
 SimulationController "1" -- "1" SimulationService : communique
 
 
 class ServiceWebSocket{
-
+ void initWebSocket()
 }
 
 class ServiceCacheRedis{
-  
+  void store(data)
+  void get()
 }
-
-CommunicationController "1" -- "1" ServiceCacheRedis : communique
-
 
 
 ServiceCacheRedis -- ServiceWebSocket
