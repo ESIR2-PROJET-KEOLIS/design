@@ -15,6 +15,8 @@ class BusService {
   Position getPosition()
 }
 
+BusController "1" -- "1" BusService : communique
+
 class PositionController {
    longitude : Double
    latitude : Double
@@ -30,6 +32,9 @@ class PositionService {
    Position getLatitude()
 }
 
+PositionController "1" -- "1" PositionService : communique
+
+
 class CommunicationController {
   void getMessage()
   void processMessage()
@@ -42,11 +47,36 @@ class CommunicationService {
    void readData(File f)
 }
 
-BusController "1" -- "1" BusService : communique
-PositionController "1" -- "1" PositionService : communique
 CommunicationController "1" -- "1" CommunicationService : communique
 
 
+class SimulationController{
+
+}
+
+class SimulationService{
+
+}
+
+SimulationController "1" -- "1" SimulationService : communique
+
+
+class ServiceWebSocket{
+
+}
+
+class ServiceCacheRedis{
+  
+}
+
+CommunicationController "1" -- "1" ServiceCacheRedis : communique
+
+
+
+ServiceCacheRedis -- ServiceWebSocket
+
 BusService "1" -- "1" PositionService : possède
-BusService "*" -- "1" CommunicationService : communique
+ServiceCacheRedis -- SimulationController
+BusService -- ServiceCacheRedis
+ServiceWebSocket -- CommunicationService
 @enduml
