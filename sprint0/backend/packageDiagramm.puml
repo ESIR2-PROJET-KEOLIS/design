@@ -1,0 +1,57 @@
+@startuml
+
+package "bus" {
+  class "bus.entity"
+  class "bus.controller"
+  class "bus.repository"
+  class "bus.service"
+
+  bus.entity  -- bus.controller 
+  bus.controller --> bus.service
+  bus.service --> bus.repository
+}
+
+package "CommunicationRabbitMq" {
+  class "CommunicationRabbitMq.controller"
+  class "CommunicationRabbitMq.service"
+
+  CommunicationRabbitMq.controller --> CommunicationRabbitMq.service
+}
+
+
+package "Position" {
+  class "Position.entity"
+  class "Position.controller"
+  class "Position.service"
+
+  Position.entity -- Position.controller
+  Position.controller --> Position.service
+}
+
+package "Service" {
+    class "Service.redis"
+    class "Service.WebSocket"
+
+    Service.redis -- Service.WebSocket
+}
+
+package "Simulation"{
+    class "Simulation.entity"
+    class "Simulation.controller"
+    class "Simulation.repository"
+    class "Simulation.service"
+
+    Simulation.entity  -- Simulation.controller 
+    Simulation.controller --> Simulation.service
+    Simulation.service --> Simulation.repository
+}
+
+
+
+Service -- CommunicationRabbitMq
+
+bus -- CommunicationRabbitMq
+bus -- Position
+Service -- Simulation
+
+@enduml
