@@ -28,11 +28,13 @@ package "Position" {
   Position.controller --> Position.service
 }
 
-package "Service" {
-    class "Service.redis"
-    class "Service.WebSocket"
+package "Cache Service" {
+    class "Cache Service.redis"
+}
 
-    Service.redis -- Service.WebSocket
+package "WebSocket Service"{
+
+    class "WebSocket Service.WebSocket"
 }
 
 package "Simulation"{
@@ -48,10 +50,9 @@ package "Simulation"{
 
 
 
-Service -- CommunicationRabbitMq
+"WebSocket Service" -- CommunicationRabbitMq
 
-bus -- CommunicationRabbitMq
+"Cache Service" -- "WebSocket Service"
 bus -- Position
-Service -- Simulation
 
 @enduml
