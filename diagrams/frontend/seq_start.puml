@@ -3,8 +3,25 @@
 
 autonumber
 
-Frontend -> MapBoxService: Get Map visualization data
-MapBoxService --> Frontend: Return map info and visualization
 Frontend -> Backend : Connection Websocket
-Backend --> Frontend: Current bus position in real time
+alt successful case Websocket
+Backend -> Frontend: Current bus position in real time
+Frontend -> MapBoxService: Get Map visualization data
+alt succesful case Map Box
+MapBoxService -> Frontend: Return map info and visualization
+else error case Map Box
+MapBoxService -> Frontend : Connection to MapBox failed
+
+Frontend -> Frontend : Error message diplayed
+end
+
+else error case Websocket
+Backend -> Frontend: Websocket connection failed
+Frontend -> Frontend : Error message diplayed
+
+
+end
+
+
+
 @enduml
