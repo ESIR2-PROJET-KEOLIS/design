@@ -1,24 +1,24 @@
 @startuml
 
-actor Client
+participant Frontend
 boundary BusController
 control BusService
 entity TabBus
 control RabbitMQService
-actor RabbitMq
+queue queue_keolis
 control WebSocketServer
-Client -> BusController: getBus()
+Frontend -> BusController: getBus()
 BusController -> BusService: getBus()
 BusService -> TabBus: getBus()
 TabBus --> BusService: getBus()
 BusService --> BusController: getBus()
-BusController --> Client: getBus()
-Client -> WebSocketServer: connect()
-WebSocketServer --> Client: recupData()
+BusController --> Frontend: getBus()
+Frontend -> WebSocketServer: connect()
+WebSocketServer --> Frontend: recupData()
 BusService -> RabbitMQService: listenToRabbitMQ()
-RabbitMq -> RabbitMQService: NewMessageOnListeningQueue
+queue_keolis -> RabbitMQService: NewMessageOnListeningQueue
 RabbitMQService -> WebSocketServer: send(msg: string)
-WebSocketServer --> Client: recupData()
+WebSocketServer --> Frontend: recupData()
 WebSocketServer --> BusService: stockData()
 
 
