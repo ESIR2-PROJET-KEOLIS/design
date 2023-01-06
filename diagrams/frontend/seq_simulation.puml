@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+Frontend -> Frontend : User changing simulation parameters
+Frontend -> Backend : GET simulation(params)
+alt successful case Backend
+Backend -> Frontend: Simulation result
+Frontend -> Frontend : Display simulation result
+else Backend Error
+Backend -> Frontend: Error simulation
+Frontend -> Frontend : Display Error message
+
+end
+
+
+@enduml

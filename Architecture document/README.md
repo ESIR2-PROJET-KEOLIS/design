@@ -68,7 +68,7 @@ A description of the use-case view of the software architecture. The Use Case Vi
 ## Architecturally-Significant Use Cases
 
 
-![Use Case Diagram](../sprint0/global/useCase.png)
+![Use Case Diagram](../diagrams/global/useCase.png)
 
 ### Visualize Keolis network in realtime
 TODO
@@ -86,7 +86,7 @@ A description of the logical view of the architecture. Describes the most import
 
 TODO : describe
 ## Architecture Overview – Package and Subsystem Layering
-![Package Diagram](../sprint0/global/package.png)
+![Package Diagram](../diagrams/global/package.png)
 
 TODO : describe
 
@@ -96,23 +96,23 @@ A description of the process view of the architecture. Describes the tasks (proc
 TODO : describe
 
 ## Processes
-![Process Diagram](../sprint0/global/process.png)
+![Process Diagram](../diagrams/global/process.png)
 
 TODO : describe
 
 ## Process to Design Elements
-![Process to Design Elements](../sprint0/global/processToDesignElements.png)
+![Process to Design Elements](../diagrams/global/processToDesignElements.png)
 
 TODO : describe
 
 ## Process Model to Design Model Dependencies
 
-![Process Model to Design Model Dependencies](../sprint0/global/processModelToDesignModelDependencies.png)
+![Process Model to Design Model Dependencies](../diagrams/global/processModelToDesignModelDependencies.png)
 
 TODO : describe
 
 ## Processes to the Implementation
-![Processes to the Implementation](../sprint0/global/processesToImplementation.png)
+![Processes to the Implementation](../diagrams/global/processesToImplementation.png)
 
 TODO : describe
 
@@ -121,7 +121,7 @@ A description of the deployment view of the architecture Describes the various p
 
 TODO : describe
 
-![Deployment Diagram](../sprint0/global/deployment.png)
+![Deployment Diagram](../diagrams/global/deployment.png)
 
 ## Description of one of the deployment node
 TODO : describe

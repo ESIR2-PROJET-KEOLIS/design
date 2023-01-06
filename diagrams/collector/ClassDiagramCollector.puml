@@ -1,0 +1,24 @@
+@startuml ClassDiagramCollector
+
+interface CollectorInterface {
+    +get_response() : dict
+    +send_request() : dict
+}
+class RequestCollector{
+}
+
+class CurlCollector{
+}
+
+class AppCollector{
+    +setup_logger()
+    +main(name, collector, time)
+    +verifArg(tab_argv)
+    +collector_choice(collector_type) : CollectorInterface
+    +help()
+}
+
+CollectorInterface <|-- RequestCollector
+CollectorInterface <|-- CurlCollector
+AppCollector -- CollectorInterface
+@enduml

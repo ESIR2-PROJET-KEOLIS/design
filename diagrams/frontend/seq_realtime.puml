@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+note over of Frontend
+Waiting websocket
+message from Backend
+end note
+alt successful case Websocket
+Backend -> Frontend: Current bus position in real time
+Frontend -> Frontend : Display bus position
+else Websocket disconnected
+Backend -> Frontend: Disconnected
+Frontend -> Backend : Reconnect
+alt successful reconnection
+Backend -> Frontend: Connected
+else failed reconnection
+Frontend -> Frontend : Display error message
+end
+end
+
+
+@enduml

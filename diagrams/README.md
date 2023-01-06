@@ -1,4 +1,4 @@
-# Sprint 0
+# Diagrams
 
 >
 > ### [Use Case Diagram](global/useCase.puml)
