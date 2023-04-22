@@ -15,6 +15,7 @@ component "Systeme"{
     [RabbitMQ] -> [ProcessingAndStorageUnit] : send raw dada via queue
 
     [ProcessingAndStorageUnit] <-(0-> SQLite : store data and get data
+    [ProcessingAndStorageUnit] <-0)- [IA_API]
 
     [RabbitMQ] --> [BackEnd] : send row data via queue
     [ProcessingAndStorageUnit] <-(0-> [BackEnd] : send parsed data

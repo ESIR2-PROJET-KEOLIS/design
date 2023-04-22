@@ -1,0 +1,10 @@
+@startuml ClassDiagramIA_API
+
+
+class main{
+    -load_model(model_path)
+    -run_model(sess, input_array)
+    +predict(nomBus, sens)
+}
+
+@enduml
