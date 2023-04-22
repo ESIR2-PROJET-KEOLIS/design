@@ -23,6 +23,8 @@ node "User Client" <<Device>> as UserClient {
                 }
                 component Frontend {
                 }
+                component IA_API {
+                }
     }
 
 cloud "Api Keolis" <<API>> as keo{
@@ -39,6 +41,7 @@ RabbitMQ #--# NestJS : AMQP:5672
 RabbitMQ #--# proc : AMQP:5672
 Collecteurs #--# RabbitMQ : AMQP:5672
 proc #--# Database
+proc #--# IA_API : HTTPS:5001
 NestJS #--# Cache
 Collecteurs <--> keo : HTTPS
 Frontend <--> map : HTTPS
