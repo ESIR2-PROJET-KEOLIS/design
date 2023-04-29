@@ -34,7 +34,7 @@ cloud "MapBox Service" <<API>> as map{
 
 }
 
-Browser #--# Frontend : HTTPS:3000
+Browser #--# Frontend : HTTPS:80
 Frontend #--# NestJS : HTTPS:3500
 Frontend #--# NestJS : WS:4000
 RabbitMQ #--# NestJS : AMQP:5672
