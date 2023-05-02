@@ -30,6 +30,10 @@ node "User Client" <<Device>> as UserClient {
 cloud "Api Keolis" <<API>> as keo{
 }
 
+cloud "FTP Keolis" <<API>> as FTP{
+}
+
+
 cloud "MapBox Service" <<API>> as map{
 
 }
@@ -41,7 +45,9 @@ RabbitMQ #--# NestJS : AMQP:5672
 RabbitMQ #--# proc : AMQP:5672
 Collecteurs #--# RabbitMQ : AMQP:5672
 proc #--# Database
-proc #--# IA_API : HTTPS:5001
+proc #--# NestJS : HTTPS : 8090
+FTP #-# proc
+IA_API #--# proc : HTTPS:5001
 NestJS #--# Cache
 Collecteurs <--> keo : HTTPS
 Frontend <--> map : HTTPS
